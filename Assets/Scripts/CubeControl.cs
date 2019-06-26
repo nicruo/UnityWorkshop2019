@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CubeControl : MonoBehaviour
 {
-    public string name = "hello";
+    public float magnitude;
     public float force = 1;
 
     private Rigidbody body;
@@ -19,14 +21,26 @@ public class CubeControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.W))
+        var horizontal = Input.GetAxis("Horizontal");
+        var vertical = Input.GetAxis("Vertical");
+
+
+        magnitude = body.velocity.magnitude;
+
+        if (body.velocity.magnitude <= 50)
         {
-            body.AddForce(new Vector3(0,1*force,0));
+            body.AddForce(new Vector3(horizontal, 0, vertical) * force);
         }
 
-        if(Input.GetKey(KeyCode.S))
+
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            body.AddForce(new Vector3(0,-1*force,0));
+            SceneManager.LoadScene("SampleScene");
         }
     }
 }
