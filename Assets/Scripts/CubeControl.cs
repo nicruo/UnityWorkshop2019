@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CubeControl : MonoBehaviour
@@ -11,6 +8,11 @@ public class CubeControl : MonoBehaviour
 
     private Rigidbody body;
 
+    private float horizontal;
+    private float vertical;
+
+	public bool playable;
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,22 +20,29 @@ public class CubeControl : MonoBehaviour
         body = GetComponent<Rigidbody>();
     }
 
+
     // Update is called once per frame
     void Update()
     {
-        var horizontal = Input.GetAxis("Horizontal");
-        var vertical = Input.GetAxis("Vertical");
+		if (playable)
+		{
+			horizontal = Input.GetAxis("Horizontal");
+			vertical = Input.GetAxis("Vertical");
+		}
+        else
+		{
+			horizontal = 0;
+			vertical = 0;
+		}
+    }
 
-
+    private void FixedUpdate()
+    {
         magnitude = body.velocity.magnitude;
-
         if (body.velocity.magnitude <= 50)
         {
             body.AddForce(new Vector3(horizontal, 0, vertical) * force);
         }
-
-
-
     }
 
     private void OnCollisionEnter(Collision collision)
