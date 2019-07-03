@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MenuScene.unity
+    guid: 822df6b054be8490dabf8fb6db2f0555
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: 12848b37cd96c4d03bb49e738f2584d4
+  - enabled: 1
+    path: Assets/Scenes/Watermark.unity
+    guid: 9b799556ba18c4701bc2afb020c62f5f
   m_configObjects: {}

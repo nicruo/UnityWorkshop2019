@@ -49,7 +49,7 @@ public class CubeControl : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("MenuScene");
         }
     }
 }
